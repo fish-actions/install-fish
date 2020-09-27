@@ -1,7 +1,10 @@
-name: "Install latest fish"
-description: "Install the latest stable release of fish"
+name: fish-actions/install-fish
+description: Install the latest stable release of fish
+branding:
+  icon: download
+  color: blue
 runs:
-  using: "composite"
+  using: composite
   steps:
     - run: |
         sudo apt-add-repository --yes --no-update ppa:fish-shell/release-3
