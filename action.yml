@@ -17,8 +17,7 @@ runs:
         sudo apt-get update -qq
         sudo apt-get install --yes fish
       shell: bash
-      
+
     - if: runner.os == 'macOS'
-      run: |
-        brew install fish
+      run: brew install fish
       shell: bash
