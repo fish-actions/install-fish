@@ -21,3 +21,4 @@ runs:
     - if: runner.os == 'macOS'
       run: |
         brew install fish
+      shell: bash
