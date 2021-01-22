@@ -19,4 +19,4 @@ jobs:
           - 'macos-latest'
     steps:
       - name: Install fish
-        uses: fish-actions/install-fish@${{ github.sha }}
+        uses: fish-actions/install-fish@$GITHUB_SHA
