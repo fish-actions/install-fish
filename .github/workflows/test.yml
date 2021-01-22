@@ -1,0 +1,22 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  test:
+    name: "Test"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - 'ubuntu-latest'
+          - 'macos-latest'
+    steps:
+      - name: Install fish
+        uses: fish-actions/install-fish@${GITHUB_SHA}
