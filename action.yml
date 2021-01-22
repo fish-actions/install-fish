@@ -11,13 +11,15 @@ runs:
   using: composite
 
   steps:
-    - if: runner.os == 'Linux'
-      run: |
-        sudo apt-add-repository --yes --no-update ppa:fish-shell/release-3
-        sudo apt-get update -qq
-        sudo apt-get install --yes fish
-      shell: bash
-
-    - if: runner.os == 'macOS'
-      run: brew install fish
+    - run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          sudo apt-add-repository --yes --no-update ppa:fish-shell/release-3
+          sudo apt-get update -qq
+          sudo apt-get install --yes fish
+        elif [ "$RUNNER_OS" == "macOS" ]; then
+          brew install fish
+        else
+          echo "$RUNNER_OS not supported"
+          exit 1
+        fi
       shell: bash
