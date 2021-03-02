@@ -17,6 +17,7 @@ runs:
           sudo apt-get update -qq
           sudo apt-get install --yes fish
         elif [ "$RUNNER_OS" == "macOS" ]; then
+          brew update
           brew install fish
         else
           echo "$RUNNER_OS not supported"
