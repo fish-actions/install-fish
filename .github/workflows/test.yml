@@ -2,10 +2,10 @@ name: tests
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
   release:
     types:
       - published
@@ -20,8 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - if: github.event_name != 'pull_request'
-        name: Install fish using action from main branch
-        uses: fish-actions/install-fish@main
+        name: Install fish using action from master branch
+        uses: fish-actions/install-fish@master
       - if: github.event_name == 'pull_request'
         name: Install fish using action from pull request branch
         uses: ./.
