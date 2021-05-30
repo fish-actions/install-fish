@@ -1,0 +1,29 @@
+name: tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  release:
+    types:
+      - published
+jobs:
+  tests:
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - if: github.event_name != 'pull_request'
+        name: Install fish using action from main branch
+        uses: fish-actions/install-fish@main
+      - if: github.event_name == 'pull_request'
+        name: Install fish using action from pull request branch
+        uses: ./.
+      - name: Check fish was installed
+        run: command -v fish >/dev/null 2>&1
