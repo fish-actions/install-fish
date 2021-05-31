@@ -19,11 +19,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
-      - if: github.event_name != 'pull_request'
-        name: Install fish using action from master branch
-        uses: fish-actions/install-fish@master
-      - if: github.event_name == 'pull_request'
-        name: Install fish using action from pull request branch
+      - name: Install fish
         uses: ./.
       - name: Check fish was installed
         run: command -v fish >/dev/null 2>&1
