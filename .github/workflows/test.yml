@@ -1,0 +1,25 @@
+name: tests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  release:
+    types:
+      - published
+jobs:
+  tests:
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install fish
+        uses: ./.
+      - name: Check fish was installed
+        run: command -v fish >/dev/null 2>&1
